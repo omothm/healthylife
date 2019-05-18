@@ -1,15 +1,22 @@
-package com.omothm.healthylife;
+package com.omothm.healthylife.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import com.omothm.healthylife.R;
+import com.omothm.healthylife.comps.Test;
 import com.omothm.healthylife.db.DataSource;
 import com.omothm.healthylife.models.Bmi;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
   private static final String TAG = MainActivity.class.getSimpleName();
+
+  private final List<Test> tests = new ArrayList<>();
+  private final MainAdapter adapter = new MainAdapter(tests);
 
   private DataSource dataSource;
 
@@ -17,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    setupRecyclerView();
 
     dataSource = new DataSource(this);
   }
@@ -30,21 +39,28 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onResume() {
     super.onResume();
+
     dataSource.open();
-    // Add sample entries to database for testing
-    /*dataSource.insert(new Bmi(new SQLiteDate(2019, 5, 18), 18f));
-    dataSource.insert(new Bmi(new SQLiteDate(2019, 5, 19), 25f));
-    dataSource.insert(new Bmi(new SQLiteDate(2019, 5, 22), 20f));*/
-    List<Bmi> bmis = dataSource.getAllBmis();
-    for (final Bmi bmi : bmis) {
-      Log.d(TAG, bmi.toString());
+
+    // BMI test
+    Test test = new Test(getString(R.string.TEST_NAME_BMI));
+    final List<Bmi> bmis = dataSource.getLatestBmi();
+    if (bmis.size() > 0) {
+      final Bmi bmi = bmis.get(0);
+      test.setResult(String.valueOf(bmi.getValue()));
+      test.setDate(bmi.getDate().toString());
     }
-    /*bmis.get(0).setDate(new SQLiteDate(2020, 1, 1));
-    dataSource.update(bmis.get(0));*/
-    dataSource.delete(bmis.get(0));
-    bmis = dataSource.getAllBmis();
-    for (final Bmi bmi : bmis) {
-      Log.d(TAG, bmi.toString());
-    }
+    tests.add(test);
+  }
+
+  private void setupRecyclerView() {
+    final RecyclerView recyclerView = findViewById(R.id.recycler_view);
+
+    final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+    recyclerView.setLayoutManager(layoutManager);
+
+
+    recyclerView.setAdapter(adapter);
   }
 }

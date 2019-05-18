@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">Healthy Life</string>
+  <string name="TEST_NAME_BMI">BMI</string>
 </resources>
