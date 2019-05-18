@@ -27,9 +27,29 @@ public class DataSource {
     Log.d(TAG, "Database closed");
   }
 
+  /**
+   * @param bmi if null, deletes all rows
+   */
+  public void delete(final Bmi bmi) {
+    String whereClause = bmi == null ? null : BmiEntry._ID + " = ?";
+    String[] whereArgs = bmi == null ? null : new String[] { String.valueOf(bmi.getId()) };
+
+    final int rows = database.delete(BmiEntry.TABLE_NAME, whereClause, whereArgs);
+    Log.d(TAG, "Number of rows deleted: " + rows);
+  }
+
+  public void deleteAllBmis() {
+    delete(null);
+  }
+
   public List<Bmi> getAllBmis() {
+    return getBmis(null);
+  }
+
+  public List<Bmi> getBmis(final String selection) {
     final List<Bmi> bmis = new ArrayList<>();
-    final Cursor cursor = database.query(BmiEntry.TABLE_NAME, null, null, null, null, null, null);
+    final Cursor cursor = database
+                              .query(BmiEntry.TABLE_NAME, null, selection, null, null, null, null);
     try {
       while (cursor.moveToNext()) {
         final long dateMillis = cursor.getLong(cursor.getColumnIndex(BmiEntry.COLUMN_DATE));
@@ -46,6 +66,12 @@ public class DataSource {
       }
     }
     return bmis;
+  }
+
+  public List<Bmi> getLatestBmi() {
+    final String sql = BmiEntry.COLUMN_DATE + " = (SELECT MAX(" + BmiEntry.COLUMN_DATE + ") FROM "
+                           + BmiEntry.TABLE_NAME + ")";
+    return getBmis(sql);
   }
 
   public void insert(@NonNull final Bmi bmi) {
