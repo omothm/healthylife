@@ -2,9 +2,14 @@ package com.omothm.healthylife;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import com.omothm.healthylife.db.DataSource;
+import com.omothm.healthylife.models.Bmi;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+  private static final String TAG = MainActivity.class.getSimpleName();
 
   private DataSource dataSource;
 
@@ -17,14 +22,22 @@ public class MainActivity extends AppCompatActivity {
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-    dataSource.open();
-  }
-
-  @Override
   protected void onPause() {
     super.onPause();
     dataSource.close();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    dataSource.open();
+    // Add sample entries to database for testing
+    /*dataSource.insert(new Bmi(new SQLiteDate(2019, 5, 18), 18f));
+    dataSource.insert(new Bmi(new SQLiteDate(2019, 5, 19), 25f));
+    dataSource.insert(new Bmi(new SQLiteDate(2019, 5, 22), 20f));*/
+    final List<Bmi> bmis = dataSource.getAllBmis();
+    for (Bmi bmi : bmis) {
+      Log.d(TAG, bmi.toString());
+    }
   }
 }

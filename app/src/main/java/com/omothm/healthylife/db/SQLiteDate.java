@@ -17,10 +17,26 @@ public class SQLiteDate {
   public SQLiteDate() {
   }
 
+  public SQLiteDate(long millis) {
+    setMillis(millis);
+  }
+
   public SQLiteDate(int year, int month, int day) {
     setYear(year);
     setMonth(month);
     setDay(day);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    SQLiteDate that = (SQLiteDate) o;
+    return cal.equals(that.cal);
   }
 
   public int getDay() {
@@ -62,19 +78,12 @@ public class SQLiteDate {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SQLiteDate that = (SQLiteDate) o;
-    return cal.equals(that.cal);
+  public int hashCode() {
+    return cal.hashCode();
   }
 
   @Override
-  public int hashCode() {
-    return cal.hashCode();
+  public String toString() {
+    return getYear() + "-" + getMonth() + "-" + getDay();
   }
 }
