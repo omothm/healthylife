@@ -1,6 +1,7 @@
 package com.omothm.healthylife.db;
 
 import java.util.Calendar;
+import org.jetbrains.annotations.NotNull;
 
 public class SQLiteDate {
 
@@ -82,6 +83,7 @@ public class SQLiteDate {
     return cal.hashCode();
   }
 
+  @NotNull
   @Override
   public String toString() {
     return getYear() + "-" + getMonth() + "-" + getDay();
