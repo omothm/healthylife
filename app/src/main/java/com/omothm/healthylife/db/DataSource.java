@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import com.omothm.healthylife.db.Contract.BmiEntry;
 import com.omothm.healthylife.models.Bmi;
@@ -34,7 +35,9 @@ public class DataSource {
         final long dateMillis = cursor.getLong(cursor.getColumnIndex(BmiEntry.COLUMN_DATE));
         final SQLiteDate date = new SQLiteDate(dateMillis);
         final float value = cursor.getFloat(cursor.getColumnIndex(BmiEntry.COLUMN_VALUE));
+        final long id = cursor.getLong(cursor.getColumnIndex(BmiEntry._ID));
         final Bmi bmi = new Bmi(date, value);
+        bmi.setId(id);
         bmis.add(bmi);
       }
     } finally {
@@ -45,7 +48,7 @@ public class DataSource {
     return bmis;
   }
 
-  public void insert(Bmi bmi) {
+  public void insert(@NonNull final Bmi bmi) {
     final ContentValues values = new ContentValues();
     values.put(BmiEntry.COLUMN_DATE, bmi.getDate().getMillis());
     values.put(BmiEntry.COLUMN_VALUE, bmi.getValue());
@@ -56,5 +59,17 @@ public class DataSource {
   public void open() {
     database = dbHelper.getWritableDatabase();
     Log.d(TAG, "Database opened");
+  }
+
+  public void update(@NonNull final Bmi bmi) {
+    final ContentValues values = new ContentValues();
+    values.put(BmiEntry.COLUMN_DATE, bmi.getDate().getMillis());
+    values.put(BmiEntry.COLUMN_VALUE, bmi.getValue());
+
+    final String whereClause = BmiEntry._ID + " = ?";
+    final String[] whereArgs = { String.valueOf(bmi.getId()) };
+
+    final int rows = database.update(BmiEntry.TABLE_NAME, values, whereClause, whereArgs);
+    Log.d(TAG, "Number of rows updated: " + rows);
   }
 }
