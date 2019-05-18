@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import com.omothm.healthylife.db.DataSource;
-import com.omothm.healthylife.db.SQLiteDate;
 import com.omothm.healthylife.models.Bmi;
 import java.util.List;
 
@@ -40,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
     for (final Bmi bmi : bmis) {
       Log.d(TAG, bmi.toString());
     }
-    bmis.get(0).setDate(new SQLiteDate(2020, 1, 1));
-    dataSource.update(bmis.get(0));
+    /*bmis.get(0).setDate(new SQLiteDate(2020, 1, 1));
+    dataSource.update(bmis.get(0));*/
+    dataSource.delete(bmis.get(0));
     bmis = dataSource.getAllBmis();
     for (final Bmi bmi : bmis) {
       Log.d(TAG, bmi.toString());
