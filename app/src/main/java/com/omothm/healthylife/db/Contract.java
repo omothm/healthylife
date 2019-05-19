@@ -18,7 +18,8 @@ final class Contract {
     public static final String CREATE_TABLE = ContractHelper.createTable(TABLE_NAME,
         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT",
         COLUMN_DATE + " INTEGER NOT NULL", COLUMN_TOP + " INTEGER NOT NULL",
-        COLUMN_BOTTOM + " INTEGER NOT NULL", "UNIQUE ( " + _ID + " ) ON CONFLICT REPLACE");
+        COLUMN_BOTTOM + " INTEGER NOT NULL",
+        "UNIQUE ( " + _ID + ", " + COLUMN_DATE + " ) ON CONFLICT REPLACE");
   }
 
   public static class BloodSugarEntry implements BaseColumns {
@@ -30,7 +31,7 @@ final class Contract {
     public static final String CREATE_TABLE = ContractHelper.createTable(TABLE_NAME,
         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT",
         COLUMN_DATE + " INTEGER NOT NULL", COLUMN_VALUE + " REAL NOT NULL",
-        "UNIQUE ( " + _ID + " ) ON CONFLICT REPLACE");
+        "UNIQUE ( " + _ID + ", " + COLUMN_DATE + " ) ON CONFLICT REPLACE");
   }
 
   // BaseColumns contains the constants _ID and _COUNT which are used throughout the Android system
@@ -44,7 +45,7 @@ final class Contract {
     public static final String CREATE_TABLE = ContractHelper.createTable(TABLE_NAME,
         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT",
         COLUMN_DATE + " INTEGER NOT NULL", COLUMN_VALUE + " REAL NOT NULL",
-        "UNIQUE ( " + _ID + " ) ON CONFLICT REPLACE");
+        "UNIQUE ( " + _ID + ", " + COLUMN_DATE + " ) ON CONFLICT REPLACE");
   }
 
   public static class EerEntry implements BaseColumns {
@@ -56,7 +57,7 @@ final class Contract {
     public static final String CREATE_TABLE = ContractHelper.createTable(TABLE_NAME,
         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT",
         COLUMN_DATE + " INTEGER NOT NULL", COLUMN_VALUE + " REAL NOT NULL",
-        "UNIQUE ( " + _ID + " ) ON CONFLICT REPLACE");
+        "UNIQUE ( " + _ID + ", " + COLUMN_DATE + " ) ON CONFLICT REPLACE");
   }
 
   public static class HeartRateEntry implements BaseColumns {
@@ -68,7 +69,7 @@ final class Contract {
     public static final String CREATE_TABLE = ContractHelper.createTable(TABLE_NAME,
         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT",
         COLUMN_DATE + " INTEGER NOT NULL", COLUMN_VALUE + " INTEGER NOT NULL",
-        "UNIQUE ( " + _ID + " ) ON CONFLICT REPLACE");
+        "UNIQUE ( " + _ID + ", " + COLUMN_DATE + " ) ON CONFLICT REPLACE");
   }
 
   public static class WeightEntry implements BaseColumns {
@@ -80,6 +81,6 @@ final class Contract {
     public static final String CREATE_TABLE = ContractHelper.createTable(TABLE_NAME,
         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT",
         COLUMN_DATE + " INTEGER NOT NULL", COLUMN_VALUE + " REAL NOT NULL",
-        "UNIQUE ( " + _ID + " ) ON CONFLICT REPLACE");
+        "UNIQUE ( " + _ID + ", " + COLUMN_DATE + " ) ON CONFLICT REPLACE");
   }
 }
