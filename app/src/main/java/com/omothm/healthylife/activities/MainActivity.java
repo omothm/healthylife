@@ -125,15 +125,13 @@ public class MainActivity extends AppCompatActivity {
 
     addMockups();
 
-    final Activity bmiActivity = new BmiActivity();
-
     tests.clear();
-    addTest(getString(R.string.test_name_bmi), bmiActivity, bmiSource.getLatest());
+    addTest(getString(R.string.test_name_bmi), new BmiActivity(), bmiSource.getLatest());
     addTest(getString(R.string.test_name_eer), new EerActivity(), eerSource.getLatest());
     addTest(getString(R.string.test_name_blood_pressure), new BloodPressureActivity(), bpSource.getLatest());
     addTest(getString(R.string.test_name_blood_sugar), new BloodSugarActivity(), bsSource.getLatest());
     addTest(getString(R.string.test_name_heart_rate), new HeartRateActivity(), hrSource.getLatest());
-    addTest(getString(R.string.test_name_weight), bmiActivity, weightSource.getLatest());
+    addTest(getString(R.string.test_name_weight), new WeightActivity(), weightSource.getLatest());
 
     setupRecyclerView();
   }

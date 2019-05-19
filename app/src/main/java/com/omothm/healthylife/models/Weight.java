@@ -1,5 +1,7 @@
 package com.omothm.healthylife.models;
 
+import android.content.Context;
+import com.omothm.healthylife.activities.WeightActivity;
 import com.omothm.healthylife.db.SQLiteDate;
 import java.util.Locale;
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +14,10 @@ public class Weight extends Model {
   public Weight(final SQLiteDate date, final float value) {
     this.date = date;
     this.value = value;
+  }
+
+  public static String getAnalysis(Context context, float weight) {
+    return null;
   }
 
   public SQLiteDate getDate() {
