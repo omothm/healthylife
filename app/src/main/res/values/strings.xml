@@ -45,6 +45,8 @@
   <string name="ideal_pressure">Ideal</string>
   <string name="pre_high_pressure">Pre-high</string>
   <string name="high_pressure">High</string>
+  <string name="invalid">Invalid values</string>
+  <string name="logo_description">Application logo</string>
   <string-array name="gender">
     <item>Male</item>
     <item>Female</item>
