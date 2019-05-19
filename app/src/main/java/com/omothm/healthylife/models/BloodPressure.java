@@ -3,14 +3,24 @@ package com.omothm.healthylife.models;
 import com.omothm.healthylife.db.SQLiteDate;
 import org.jetbrains.annotations.NotNull;
 
-public class Bmi extends Model {
+public class BloodPressure extends Model {
 
+  private int bottom;
   private SQLiteDate date;
-  private float value;
+  private int top;
 
-  public Bmi(final SQLiteDate date, final float value) {
+  public BloodPressure(final SQLiteDate date, final int top, final int bottom) {
     this.date = date;
-    this.value = value;
+    this.top = top;
+    this.bottom = bottom;
+  }
+
+  public int getBottom() {
+    return bottom;
+  }
+
+  public void setBottom(int bottom) {
+    this.bottom = bottom;
   }
 
   public SQLiteDate getDate() {
@@ -23,15 +33,15 @@ public class Bmi extends Model {
 
   @Override
   public String getStringValue() {
-    return String.valueOf(value);
+    return top + "/" + bottom;
   }
 
-  public float getValue() {
-    return value;
+  public int getTop() {
+    return top;
   }
 
-  public void setValue(float value) {
-    this.value = value;
+  public void setTop(int top) {
+    this.top = top;
   }
 
   @NotNull

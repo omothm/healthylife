@@ -3,12 +3,12 @@ package com.omothm.healthylife.models;
 import com.omothm.healthylife.db.SQLiteDate;
 import org.jetbrains.annotations.NotNull;
 
-public class Bmi extends Model {
+public class HeartRate extends Model {
 
   private SQLiteDate date;
-  private float value;
+  private int value;
 
-  public Bmi(final SQLiteDate date, final float value) {
+  public HeartRate(final SQLiteDate date, final int value) {
     this.date = date;
     this.value = value;
   }
@@ -26,11 +26,11 @@ public class Bmi extends Model {
     return String.valueOf(value);
   }
 
-  public float getValue() {
+  public int getValue() {
     return value;
   }
 
-  public void setValue(float value) {
+  public void setValue(int value) {
     this.value = value;
   }
 

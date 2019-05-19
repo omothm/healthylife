@@ -3,12 +3,12 @@ package com.omothm.healthylife.models;
 import com.omothm.healthylife.db.SQLiteDate;
 import org.jetbrains.annotations.NotNull;
 
-public class Bmi extends Model {
+public class BloodSugar extends Model {
 
   private SQLiteDate date;
   private float value;
 
-  public Bmi(final SQLiteDate date, final float value) {
+  public BloodSugar(final SQLiteDate date, final float value) {
     this.date = date;
     this.value = value;
   }
