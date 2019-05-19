@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import com.omothm.healthylife.R;
 import com.omothm.healthylife.comps.Test;
 import com.omothm.healthylife.db.BloodPressureSource;
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
   private final List<Test> tests = new ArrayList<>();
   private MainAdapter adapter;
+
   private BmiSource bmiSource;
   private BloodPressureSource bpSource;
   private BloodSugarSource bsSource;
@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
       test.setResult(t.getStringValue());
       test.setDate(t.getDate().toString());
     } else {
-      test.setResult(getString(R.string.NOT_TESTED));
-      test.setDate(getString(R.string.NO_DATE));
+      test.setResult(getString(R.string.not_tested));
+      test.setDate(getString(R.string.no_date));
     }
     tests.add(test);
   }
@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
     super.onPause();
     // Close database
     dbHelper.close();
-    Log.d(TAG, "Database closed");
   }
 
   @Override
@@ -73,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
     super.onResume();
 
     // Open database
-    database = dbHelper.getWritableDatabase();
-    Log.d(TAG, "Database opened");
+    database = dbHelper.open();
 
     bmiSource = new BmiSource(database);
     eerSource = new EerSource(database);
@@ -84,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
     weightSource = new WeightSource(database);
 
     final Activity bmiActivity = new BmiActivity();
-    addTest(getString(R.string.TEST_NAME_BMI), bmiActivity, bmiSource.getLatest());
-    addTest(getString(R.string.TEST_NAME_EER), bmiActivity, eerSource.getLatest());
-    addTest(getString(R.string.TEST_NAME_BLOOD_PRESSURE), bmiActivity, bpSource.getLatest());
-    addTest(getString(R.string.TEST_NAME_BLOOD_SUGAR), bmiActivity, bsSource.getLatest());
-    addTest(getString(R.string.TEST_NAME_HEART_RATE), bmiActivity, hrSource.getLatest());
-    addTest(getString(R.string.TEST_NAME_WEIGHT), bmiActivity, weightSource.getLatest());
+    addTest(getString(R.string.test_name_bmi), bmiActivity, bmiSource.getLatest());
+    addTest(getString(R.string.test_name_eer), bmiActivity, eerSource.getLatest());
+    addTest(getString(R.string.test_name_blood_pressure), bmiActivity, bpSource.getLatest());
+    addTest(getString(R.string.test_name_blood_sugar), bmiActivity, bsSource.getLatest());
+    addTest(getString(R.string.test_name_heart_rate), bmiActivity, hrSource.getLatest());
+    addTest(getString(R.string.test_name_weight), bmiActivity, weightSource.getLatest());
   }
 
   private void setupRecyclerView() {
