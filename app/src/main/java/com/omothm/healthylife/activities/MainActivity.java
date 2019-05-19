@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     tests.clear();
     addTest(getString(R.string.test_name_bmi), bmiActivity, bmiSource.getLatest());
     addTest(getString(R.string.test_name_eer), new EerActivity(), eerSource.getLatest());
-    addTest(getString(R.string.test_name_blood_pressure), bmiActivity, bpSource.getLatest());
+    addTest(getString(R.string.test_name_blood_pressure), new BloodPressureActivity(), bpSource.getLatest());
     addTest(getString(R.string.test_name_blood_sugar), bmiActivity, bsSource.getLatest());
     addTest(getString(R.string.test_name_heart_rate), bmiActivity, hrSource.getLatest());
     addTest(getString(R.string.test_name_weight), bmiActivity, weightSource.getLatest());

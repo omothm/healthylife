@@ -27,6 +27,10 @@
   <string name="activity">Activity</string>
   <string name="age_hint">Your age</string>
   <string name="age_limit">19+</string>
+  <string name="top">Top</string>
+  <string name="top_hint">Top number</string>
+  <string name="bottom">Bottom</string>
+  <string name="bottom_hint">Bottom number</string>
   <string-array name="gender">
     <item>Male</item>
     <item>Female</item>

@@ -19,6 +19,7 @@
       </intent-filter>
     </activity>
     <activity android:name=".activities.EerActivity"/>
+    <activity android:name=".activities.BloodPressureActivity"/>
   </application>
 
 </manifest>

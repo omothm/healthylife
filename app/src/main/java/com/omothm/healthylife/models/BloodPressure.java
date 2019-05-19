@@ -1,5 +1,7 @@
 package com.omothm.healthylife.models;
 
+import android.content.Context;
+import com.omothm.healthylife.activities.BloodPressureActivity;
 import com.omothm.healthylife.db.SQLiteDate;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,6 +15,31 @@ public class BloodPressure extends Model {
     this.date = date;
     this.top = top;
     this.bottom = bottom;
+  }
+
+  public static String getAnalysis(Context context, int topNumber,
+      int bottomNumber) {
+    final StringBuilder builder = new StringBuilder();
+    if (topNumber < 90) {
+      builder.append("Low");
+    } else if (topNumber < 120) {
+      builder.append("Ideal");
+    } else if (topNumber < 140) {
+      builder.append("Pre-high");
+    } else {
+      builder.append("High");
+    }
+    builder.append(" / ");
+    if (bottomNumber < 60) {
+      builder.append("Low");
+    } else if (bottomNumber < 80) {
+      builder.append("Ideal");
+    } else if (bottomNumber < 90) {
+      builder.append("Pre-high");
+    } else {
+      builder.append("High");
+    }
+    return builder.toString();
   }
 
   public int getBottom() {
