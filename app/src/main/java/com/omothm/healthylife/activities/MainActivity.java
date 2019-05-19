@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
     for (int i = 0; i < nEer; i++) {
       eerSource.insert(new Eer(new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
-          3f + (float) (Math.random() * 7f)));
+          1500f + (float) (Math.random() * 1500f)));
     }
     for (int i = 0; i < nBp; i++) {
       bpSource.insert(new BloodPressure(new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     tests.clear();
     addTest(getString(R.string.test_name_bmi), bmiActivity, bmiSource.getLatest());
-    addTest(getString(R.string.test_name_eer), bmiActivity, eerSource.getLatest());
+    addTest(getString(R.string.test_name_eer), new EerActivity(), eerSource.getLatest());
     addTest(getString(R.string.test_name_blood_pressure), bmiActivity, bpSource.getLatest());
     addTest(getString(R.string.test_name_blood_sugar), bmiActivity, bsSource.getLatest());
     addTest(getString(R.string.test_name_heart_rate), bmiActivity, hrSource.getLatest());

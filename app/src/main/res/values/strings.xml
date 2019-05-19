@@ -22,4 +22,19 @@
   <string name="obese">Obese</string>
   <string name="entry_added">Entry added successfully</string>
   <string name="entry_failed">Failed to add entry</string>
+  <string name="gender">Gender</string>
+  <string name="age">Age</string>
+  <string name="activity">Activity</string>
+  <string name="age_hint">Your age</string>
+  <string name="age_limit">19+</string>
+  <string-array name="gender">
+    <item>Male</item>
+    <item>Female</item>
+  </string-array>
+  <string-array name="activities">
+    <item>Sedentary</item>
+    <item>Low active</item>
+    <item>Active</item>
+    <item>Very active</item>
+  </string-array>
 </resources>
