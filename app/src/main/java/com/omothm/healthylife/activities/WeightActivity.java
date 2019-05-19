@@ -100,7 +100,7 @@ public class WeightActivity extends AppCompatActivity {
       public void onClick(View v) {
 
         final SQLiteDate today = new SQLiteDate();
-        final Weight newWeight = new Weight(today, weight);
+        final Weight newWeight = new Weight(WeightActivity.this, today, weight);
         final boolean success;
 
         // If a record for today exists, update. Otherwise, insert.
@@ -146,7 +146,7 @@ public class WeightActivity extends AppCompatActivity {
     // Open database
     SQLiteDatabase database = dbHelper.open();
 
-    weightSource = new WeightSource(database);
+    weightSource = new WeightSource(this, database);
     loadData();
   }
 

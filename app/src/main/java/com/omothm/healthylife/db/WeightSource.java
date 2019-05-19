@@ -1,6 +1,7 @@
 package com.omothm.healthylife.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -12,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class WeightSource extends DataSourceWithDate<Weight> {
 
-  public WeightSource(SQLiteDatabase database) {
-    super(database, WeightEntry.TABLE_NAME, WeightEntry._ID, WeightEntry.COLUMN_DATE);
+  public WeightSource(Context context, SQLiteDatabase database) {
+    super(context, database, WeightEntry.TABLE_NAME, WeightEntry._ID, WeightEntry.COLUMN_DATE);
   }
 
   @Override
@@ -35,7 +36,7 @@ public class WeightSource extends DataSourceWithDate<Weight> {
         final SQLiteDate date = new SQLiteDate(dateMillis);
         final float value = cursor.getFloat(cursor.getColumnIndex(WeightEntry.COLUMN_VALUE));
         final long id = cursor.getLong(cursor.getColumnIndex(WeightEntry._ID));
-        final Weight Weight = new Weight(date, value);
+        final Weight Weight = new Weight(context, date, value);
         Weight.setId(id);
         eers.add(Weight);
       }

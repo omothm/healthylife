@@ -99,7 +99,7 @@ public class BloodSugarActivity extends AppCompatActivity {
       public void onClick(View v) {
 
         final SQLiteDate today = new SQLiteDate();
-        final BloodSugar newBs = new BloodSugar(today, bs);
+        final BloodSugar newBs = new BloodSugar(BloodSugarActivity.this, today, bs);
         final boolean success;
 
         // If a record for today exists, update. Otherwise, insert.
@@ -145,7 +145,7 @@ public class BloodSugarActivity extends AppCompatActivity {
     // Open database
     SQLiteDatabase database = dbHelper.open();
 
-    bsSource = new BloodSugarSource(database);
+    bsSource = new BloodSugarSource(this, database);
     loadData();
   }
 

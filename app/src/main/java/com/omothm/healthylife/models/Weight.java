@@ -1,7 +1,7 @@
 package com.omothm.healthylife.models;
 
 import android.content.Context;
-import com.omothm.healthylife.activities.WeightActivity;
+import com.omothm.healthylife.R;
 import com.omothm.healthylife.db.SQLiteDate;
 import java.util.Locale;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +11,8 @@ public class Weight extends Model {
   private SQLiteDate date;
   private float value;
 
-  public Weight(final SQLiteDate date, final float value) {
+  public Weight(Context context, final SQLiteDate date, final float value) {
+    super(context);
     this.date = date;
     this.value = value;
   }
@@ -30,7 +31,8 @@ public class Weight extends Model {
 
   @Override
   public String getStringValue() {
-    return String.format(Locale.getDefault(), "%.1f", value);
+    return String.format(Locale.getDefault(), "%.1f", value) + " " + context
+                                                                   .getString(R.string.weight_unit);
   }
 
   public float getValue() {

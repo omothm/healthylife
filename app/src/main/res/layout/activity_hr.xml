@@ -59,7 +59,7 @@
           tools:ignore="Autofill"/>
         <TextView
           android:padding="8dp"
-          android:text="@string/bpm_abbrev"/>
+          android:text="@string/heart_rate_unit"/>
       </TableRow>
     </TableLayout>
     <TextView

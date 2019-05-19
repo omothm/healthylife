@@ -11,7 +11,8 @@ public class Bmi extends Model {
   private SQLiteDate date;
   private float value;
 
-  public Bmi(final SQLiteDate date, final float value) {
+  public Bmi(final Context context, final SQLiteDate date, final float value) {
+    super(context);
     this.date = date;
     this.value = value;
   }
@@ -42,7 +43,7 @@ public class Bmi extends Model {
 
   @Override
   public String getStringValue() {
-    return String.format(Locale.getDefault(), "%.1f", value);
+    return String.format(Locale.getDefault(), "%.1f", value) + " " + context.getString(R.string.bmi_unit);
   }
 
   public float getValue() {

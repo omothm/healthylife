@@ -59,7 +59,7 @@
           tools:ignore="Autofill"/>
         <TextView
           android:padding="8dp"
-          android:text="@string/kilogram_abbrev"/>
+          android:text="@string/weight_unit"/>
       </TableRow>
       <TableRow android:padding="8dp">
         <TextView
@@ -76,7 +76,7 @@
           tools:ignore="Autofill"/>
         <TextView
           android:padding="8dp"
-          android:text="@string/meter_abbrev"/>
+          android:text="@string/height_unit"/>
       </TableRow>
       <TableRow android:padding="8dp">
         <TextView
@@ -90,6 +90,9 @@
           android:padding="8dp"
           android:gravity="center"
           tools:text="-"/>
+        <TextView
+          android:padding="8dp"
+          android:text="@string/bmi_unit"/>
       </TableRow>
     </TableLayout>
     <TextView

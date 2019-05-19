@@ -1,6 +1,7 @@
 package com.omothm.healthylife.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -12,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class BloodPressureSource extends DataSourceWithDate<BloodPressure> {
 
-  public BloodPressureSource(SQLiteDatabase database) {
-    super(database, BloodPressureEntry.TABLE_NAME, BloodPressureEntry._ID,
+  public BloodPressureSource(Context context, SQLiteDatabase database) {
+    super(context, database, BloodPressureEntry.TABLE_NAME, BloodPressureEntry._ID,
         BloodPressureEntry.COLUMN_DATE);
   }
 
@@ -39,7 +40,7 @@ public class BloodPressureSource extends DataSourceWithDate<BloodPressure> {
         final int top = cursor.getInt(cursor.getColumnIndex(BloodPressureEntry.COLUMN_TOP));
         final int bottom = cursor.getInt(cursor.getColumnIndex(BloodPressureEntry.COLUMN_BOTTOM));
         final long id = cursor.getLong(cursor.getColumnIndex(BloodPressureEntry._ID));
-        final BloodPressure BloodPressure = new BloodPressure(date, top, bottom);
+        final BloodPressure BloodPressure = new BloodPressure(context, date, top, bottom);
         BloodPressure.setId(id);
         bps.add(BloodPressure);
       }

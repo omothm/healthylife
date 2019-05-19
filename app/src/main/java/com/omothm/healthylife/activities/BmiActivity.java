@@ -111,7 +111,7 @@ public class BmiActivity extends AppCompatActivity {
       public void onClick(View v) {
 
         final SQLiteDate today = new SQLiteDate();
-        final Bmi newBmi = new Bmi(today, bmi);
+        final Bmi newBmi = new Bmi(BmiActivity.this, today, bmi);
         final boolean success;
 
         // If a record for today exists, update. Otherwise, insert.
@@ -157,7 +157,7 @@ public class BmiActivity extends AppCompatActivity {
     // Open database
     SQLiteDatabase database = dbHelper.open();
 
-    bmiSource = new BmiSource(database);
+    bmiSource = new BmiSource(this, database);
     loadData();
   }
 

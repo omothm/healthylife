@@ -1,10 +1,16 @@
 package com.omothm.healthylife.models;
 
+import android.content.Context;
 import com.omothm.healthylife.db.SQLiteDate;
 
 public abstract class Model {
 
+  protected final Context context;
   private long id;
+
+  public Model(Context context) {
+    this.context = context;
+  }
 
   public abstract SQLiteDate getDate();
 

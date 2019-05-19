@@ -1,6 +1,7 @@
 package com.omothm.healthylife.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -12,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class HeartRateSource extends DataSourceWithDate<HeartRate> {
 
-  public HeartRateSource(SQLiteDatabase database) {
-    super(database, HeartRateEntry.TABLE_NAME, HeartRateEntry._ID, HeartRateEntry.COLUMN_DATE);
+  public HeartRateSource(Context context, SQLiteDatabase database) {
+    super(context, database, HeartRateEntry.TABLE_NAME, HeartRateEntry._ID, HeartRateEntry.COLUMN_DATE);
   }
 
   @Override
@@ -35,7 +36,7 @@ public class HeartRateSource extends DataSourceWithDate<HeartRate> {
         final SQLiteDate date = new SQLiteDate(dateMillis);
         final int value = cursor.getInt(cursor.getColumnIndex(HeartRateEntry.COLUMN_VALUE));
         final long id = cursor.getLong(cursor.getColumnIndex(HeartRateEntry._ID));
-        final HeartRate HeartRate = new HeartRate(date, value);
+        final HeartRate HeartRate = new HeartRate(context, date, value);
         HeartRate.setId(id);
         eers.add(HeartRate);
       }

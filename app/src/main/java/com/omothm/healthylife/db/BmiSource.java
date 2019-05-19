@@ -1,6 +1,7 @@
 package com.omothm.healthylife.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -12,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class BmiSource extends DataSourceWithDate<Bmi> {
 
-  public BmiSource(SQLiteDatabase database) {
-    super(database, BmiEntry.TABLE_NAME, BmiEntry._ID, BmiEntry.COLUMN_DATE);
+  public BmiSource(Context context, SQLiteDatabase database) {
+    super(context, database, BmiEntry.TABLE_NAME, BmiEntry._ID, BmiEntry.COLUMN_DATE);
   }
 
   @Override
@@ -35,7 +36,7 @@ public class BmiSource extends DataSourceWithDate<Bmi> {
         final SQLiteDate date = new SQLiteDate(dateMillis);
         final float value = cursor.getFloat(cursor.getColumnIndex(BmiEntry.COLUMN_VALUE));
         final long id = cursor.getLong(cursor.getColumnIndex(BmiEntry._ID));
-        final Bmi bmi = new Bmi(date, value);
+        final Bmi bmi = new Bmi(context, date, value);
         bmi.setId(id);
         bmis.add(bmi);
       }

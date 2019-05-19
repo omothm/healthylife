@@ -185,7 +185,7 @@ public class EerActivity extends AppCompatActivity {
       public void onClick(View v) {
 
         final SQLiteDate today = new SQLiteDate();
-        final Eer newEer = new Eer(today, eer);
+        final Eer newEer = new Eer(EerActivity.this, today, eer);
         final boolean success;
 
         // If a record for today exists, update. Otherwise, insert.
@@ -231,7 +231,7 @@ public class EerActivity extends AppCompatActivity {
     // Open database
     SQLiteDatabase database = dbHelper.open();
 
-    eerSource = new EerSource(database);
+    eerSource = new EerSource(this, database);
     loadData();
   }
 

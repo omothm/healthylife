@@ -1,6 +1,7 @@
 package com.omothm.healthylife.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -10,13 +11,16 @@ import java.util.List;
 public abstract class DataSourceWithDate<T extends Model> {
 
   private static final String TAG = DataSourceWithDate.class.getSimpleName();
+  protected final Context context;
   protected final SQLiteDatabase database;
   protected final String dateColumn;
   protected final String idColumn;
   protected final String tableName;
 
-  public DataSourceWithDate(final SQLiteDatabase database, final String tableName,
+  public DataSourceWithDate(final Context context, final SQLiteDatabase database,
+      final String tableName,
       final String idColumn, final String dateColumn) {
+    this.context = context;
     this.database = database;
     this.tableName = tableName;
     this.dateColumn = dateColumn;

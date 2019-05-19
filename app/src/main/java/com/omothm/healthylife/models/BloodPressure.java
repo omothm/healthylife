@@ -1,7 +1,7 @@
 package com.omothm.healthylife.models;
 
 import android.content.Context;
-import com.omothm.healthylife.activities.BloodPressureActivity;
+import com.omothm.healthylife.R;
 import com.omothm.healthylife.db.SQLiteDate;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,7 +11,8 @@ public class BloodPressure extends Model {
   private SQLiteDate date;
   private int top;
 
-  public BloodPressure(final SQLiteDate date, final int top, final int bottom) {
+  public BloodPressure(Context context, final SQLiteDate date, final int top, final int bottom) {
+    super(context);
     this.date = date;
     this.top = top;
     this.bottom = bottom;
@@ -21,23 +22,23 @@ public class BloodPressure extends Model {
       int bottomNumber) {
     final StringBuilder builder = new StringBuilder();
     if (topNumber < 90) {
-      builder.append("Low");
+      builder.append(context.getString(R.string.low_pressure));
     } else if (topNumber < 120) {
-      builder.append("Ideal");
+      builder.append(context.getString(R.string.ideal_pressure));
     } else if (topNumber < 140) {
-      builder.append("Pre-high");
+      builder.append(context.getString(R.string.pre_high_pressure));
     } else {
-      builder.append("High");
+      builder.append(context.getString(R.string.high_pressure));
     }
     builder.append(" / ");
     if (bottomNumber < 60) {
-      builder.append("Low");
+      builder.append(context.getString(R.string.low_pressure));
     } else if (bottomNumber < 80) {
-      builder.append("Ideal");
+      builder.append(context.getString(R.string.ideal_pressure));
     } else if (bottomNumber < 90) {
-      builder.append("Pre-high");
+      builder.append(context.getString(R.string.pre_high_pressure));
     } else {
-      builder.append("High");
+      builder.append(context.getString(R.string.high_pressure));
     }
     return builder.toString();
   }

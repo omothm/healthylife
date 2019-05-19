@@ -99,7 +99,7 @@ public class HeartRateActivity extends AppCompatActivity {
       public void onClick(View v) {
 
         final SQLiteDate today = new SQLiteDate();
-        final HeartRate newBs = new HeartRate(today, hr);
+        final HeartRate newBs = new HeartRate(HeartRateActivity.this, today, hr);
         final boolean success;
 
         // If a record for today exists, update. Otherwise, insert.
@@ -145,7 +145,7 @@ public class HeartRateActivity extends AppCompatActivity {
     // Open database
     SQLiteDatabase database = dbHelper.open();
 
-    bsSource = new HeartRateSource(database);
+    bsSource = new HeartRateSource(this, database);
     loadData();
   }
 

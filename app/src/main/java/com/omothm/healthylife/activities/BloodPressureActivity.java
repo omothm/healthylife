@@ -107,7 +107,8 @@ public class BloodPressureActivity extends AppCompatActivity {
       public void onClick(View v) {
 
         final SQLiteDate today = new SQLiteDate();
-        final BloodPressure newBp = new BloodPressure(today, top, bottom);
+        final BloodPressure newBp = new BloodPressure(BloodPressureActivity.this, today, top,
+            bottom);
         final boolean success;
 
         // If a record for today exists, update. Otherwise, insert.
@@ -155,7 +156,7 @@ public class BloodPressureActivity extends AppCompatActivity {
     // Open database
     SQLiteDatabase database = dbHelper.open();
 
-    bpSource = new BloodPressureSource(database);
+    bpSource = new BloodPressureSource(this, database);
     loadData();
   }
 

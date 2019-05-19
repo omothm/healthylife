@@ -1,6 +1,7 @@
 package com.omothm.healthylife.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -12,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class EerSource extends DataSourceWithDate<Eer> {
 
-  public EerSource(SQLiteDatabase database) {
-    super(database, EerEntry.TABLE_NAME, EerEntry._ID, EerEntry.COLUMN_DATE);
+  public EerSource(Context context, SQLiteDatabase database) {
+    super(context, database, EerEntry.TABLE_NAME, EerEntry._ID, EerEntry.COLUMN_DATE);
   }
 
   @Override
@@ -35,7 +36,7 @@ public class EerSource extends DataSourceWithDate<Eer> {
         final SQLiteDate date = new SQLiteDate(dateMillis);
         final float value = cursor.getFloat(cursor.getColumnIndex(EerEntry.COLUMN_VALUE));
         final long id = cursor.getLong(cursor.getColumnIndex(EerEntry._ID));
-        final Eer Eer = new Eer(date, value);
+        final Eer Eer = new Eer(context, date, value);
         Eer.setId(id);
         eers.add(Eer);
       }

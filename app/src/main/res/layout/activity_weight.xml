@@ -59,7 +59,7 @@
           tools:ignore="Autofill"/>
         <TextView
           android:padding="8dp"
-          android:text="@string/kilogram_abbrev"/>
+          android:text="@string/weight_unit"/>
       </TableRow>
     </TableLayout>
     <TextView

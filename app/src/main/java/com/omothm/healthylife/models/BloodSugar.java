@@ -1,9 +1,8 @@
 package com.omothm.healthylife.models;
 
 import android.content.Context;
-import com.omothm.healthylife.activities.BloodSugarActivity;
+import com.omothm.healthylife.R;
 import com.omothm.healthylife.db.SQLiteDate;
-import java.util.Locale;
 import org.jetbrains.annotations.NotNull;
 
 public class BloodSugar extends Model {
@@ -11,16 +10,17 @@ public class BloodSugar extends Model {
   private SQLiteDate date;
   private int value;
 
-  public BloodSugar(final SQLiteDate date, final int value) {
+  public BloodSugar(Context context, final SQLiteDate date, final int value) {
+    super(context);
     this.date = date;
     this.value = value;
   }
 
   public static String getAnalysis(Context context, int bs) {
     if (bs < 140) {
-      return "Normal";
+      return context.getString(R.string.normal);
     } else {
-      return "Diabetic";
+      return context.getString(R.string.diabetic);
     }
   }
 
@@ -34,7 +34,7 @@ public class BloodSugar extends Model {
 
   @Override
   public String getStringValue() {
-    return String.valueOf(value);
+    return value + " " + context.getString(R.string.sugar_unit);
   }
 
   public float getValue() {

@@ -2,7 +2,6 @@ package com.omothm.healthylife.models;
 
 import android.content.Context;
 import com.omothm.healthylife.R;
-import com.omothm.healthylife.activities.HeartRateActivity;
 import com.omothm.healthylife.db.SQLiteDate;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,7 +10,8 @@ public class HeartRate extends Model {
   private SQLiteDate date;
   private int value;
 
-  public HeartRate(final SQLiteDate date, final int value) {
+  public HeartRate(Context context, final SQLiteDate date, final int value) {
+    super(context);
     this.date = date;
     this.value = value;
   }
@@ -34,7 +34,7 @@ public class HeartRate extends Model {
 
   @Override
   public String getStringValue() {
-    return String.valueOf(value);
+    return value + " " + context.getString(R.string.heart_rate_unit);
   }
 
   public int getValue() {

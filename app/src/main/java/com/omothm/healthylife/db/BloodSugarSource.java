@@ -1,6 +1,7 @@
 package com.omothm.healthylife.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
@@ -12,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class BloodSugarSource extends DataSourceWithDate<BloodSugar> {
 
-  public BloodSugarSource(SQLiteDatabase database) {
-    super(database, BloodSugarEntry.TABLE_NAME, BloodSugarEntry._ID, BloodSugarEntry.COLUMN_DATE);
+  public BloodSugarSource(Context context, SQLiteDatabase database) {
+    super(context, database, BloodSugarEntry.TABLE_NAME, BloodSugarEntry._ID, BloodSugarEntry.COLUMN_DATE);
   }
 
   @Override
@@ -35,7 +36,7 @@ public class BloodSugarSource extends DataSourceWithDate<BloodSugar> {
         final SQLiteDate date = new SQLiteDate(dateMillis);
         final int value = cursor.getInt(cursor.getColumnIndex(BloodSugarEntry.COLUMN_VALUE));
         final long id = cursor.getLong(cursor.getColumnIndex(BloodSugarEntry._ID));
-        final BloodSugar BloodSugar = new BloodSugar(date, value);
+        final BloodSugar BloodSugar = new BloodSugar(context, date, value);
         BloodSugar.setId(id);
         bss.add(BloodSugar);
       }

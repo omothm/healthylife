@@ -59,7 +59,7 @@
           tools:ignore="Autofill"/>
         <TextView
           android:padding="8dp"
-          android:text="@string/mgdl_abbrev"/>
+          android:text="@string/sugar_unit"/>
       </TableRow>
     </TableLayout>
     <TextView
