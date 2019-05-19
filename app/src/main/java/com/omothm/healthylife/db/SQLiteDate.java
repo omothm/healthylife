@@ -9,14 +9,17 @@ public class SQLiteDate {
 
   {
     cal = Calendar.getInstance();
+    final int day = cal.get(Calendar.DAY_OF_MONTH);
+    final int month = cal.get(Calendar.MONTH);
+    final int year = cal.get(Calendar.YEAR);
     cal.clear();
+    cal.set(year, month, day);
     // This tells the calendar to not accept values outside the normalized range and throw an
     // exception. If the calendar is set to be lenient, it would accept 31 February as 3 March.
     cal.setLenient(false);
   }
 
-  public SQLiteDate() {
-  }
+  public SQLiteDate() { }
 
   public SQLiteDate(long millis) {
     setMillis(millis);

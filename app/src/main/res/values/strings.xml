@@ -16,4 +16,10 @@
   <string name="kilogram_abbrev">kg</string>
   <string name="meter_abbrev">m</string>
   <string name="add_entry">Add Entry</string>
+  <string name="underweight">Underweight</string>
+  <string name="normal_weight">Normal weight</string>
+  <string name="overweight">Overweight</string>
+  <string name="obese">Obese</string>
+  <string name="entry_added">Entry added successfully</string>
+  <string name="entry_failed">Failed to add entry</string>
 </resources>

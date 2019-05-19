@@ -1,5 +1,7 @@
 package com.omothm.healthylife.models;
 
+import android.content.Context;
+import com.omothm.healthylife.R;
 import com.omothm.healthylife.db.SQLiteDate;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,6 +13,22 @@ public class Bmi extends Model {
   public Bmi(final SQLiteDate date, final float value) {
     this.date = date;
     this.value = value;
+  }
+
+  public static float calculate(final float weight, final float height) {
+    return weight / (height * height);
+  }
+
+  public static String getAnalysis(final Context context, final float bmi) {
+    if (bmi < 18.5f) {
+      return context.getString(R.string.underweight);
+    } else if (bmi < 25f) {
+      return context.getString(R.string.normal_weight);
+    } else if (bmi < 30) {
+      return context.getString(R.string.overweight);
+    } else {
+      return context.getString(R.string.obese);
+    }
   }
 
   public SQLiteDate getDate() {

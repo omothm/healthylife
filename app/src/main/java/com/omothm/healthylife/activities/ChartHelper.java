@@ -53,6 +53,6 @@ public class ChartHelper {
     yAxis.setDrawLabels(true);
 
     // animate calls invalidate()...
-    chart.animateX(1500);
+    chart.animateX(500);
   }
 }

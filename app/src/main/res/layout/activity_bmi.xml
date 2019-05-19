@@ -10,26 +10,26 @@
     android:orientation="vertical">
 
     <com.github.mikephil.charting.charts.LineChart
-      android:focusableInTouchMode="true"
       android:id="@+id/chart"
       android:layout_width="match_parent"
-      android:layout_height="@dimen/banner_height"/>
+      android:layout_height="@dimen/banner_height"
+      android:focusableInTouchMode="true"/>
 
     <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
       <TextView
-        android:id="@+id/textView"
+        style="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        style="@style/TextAppearance.AppCompat.Large"
         android:text="@string/add_new_entry"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
       <Button
+        android:id="@+id/add_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
