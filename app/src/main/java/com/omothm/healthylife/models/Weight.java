@@ -1,6 +1,7 @@
 package com.omothm.healthylife.models;
 
 import com.omothm.healthylife.db.SQLiteDate;
+import java.util.Locale;
 import org.jetbrains.annotations.NotNull;
 
 public class Weight extends Model {
@@ -23,7 +24,7 @@ public class Weight extends Model {
 
   @Override
   public String getStringValue() {
-    return String.valueOf(value);
+    return String.format(Locale.getDefault(), "%.1f", value);
   }
 
   public float getValue() {

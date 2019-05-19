@@ -33,7 +33,7 @@ public class BloodPressure extends Model {
 
   @Override
   public String getStringValue() {
-    return top + "/" + bottom;
+    return top + " / " + bottom;
   }
 
   public int getTop() {
