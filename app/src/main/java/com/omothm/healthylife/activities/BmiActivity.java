@@ -116,12 +116,12 @@ public class BmiActivity extends AppCompatActivity {
 
         // If a record for today exists, update. Otherwise, insert.
         final List<Bmi> bmis = bmiSource.getLatest();
-        if (bmis.size() > 0 && bmis.get(0).getDate().equals(new SQLiteDate())) {
+        if (bmis.size() > 0 && bmis.get(0).getDate().equals(today)) {
           newBmi.setId(bmis.get(0).getId());
           final int update = bmiSource.update(newBmi);
           success = update > 0;
         } else {
-          final long insert = bmiSource.insert(new Bmi(new SQLiteDate(), bmi));
+          final long insert = bmiSource.insert(newBmi);
           success = insert != -1;
         }
         if (success) {

@@ -40,7 +40,7 @@ public class BmiSource extends DataSourceWithDate<Bmi> {
         bmis.add(bmi);
       }
     } finally {
-      if (cursor != null && !cursor.isClosed()) {
+      if (!cursor.isClosed()) {
         cursor.close();
       }
     }
