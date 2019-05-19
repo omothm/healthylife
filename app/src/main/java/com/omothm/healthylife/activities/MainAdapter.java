@@ -14,10 +14,11 @@ import com.omothm.healthylife.comps.Test;
 import java.util.Collections;
 import java.util.List;
 
+/** Handles populating objects in the RecyclerView. */
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
   private final Context context;
-  private List<Test> tests = Collections.emptyList();
+  private List<Test> tests = Collections.emptyList(); // the objects to populate
 
   public MainAdapter(final Context context, final List<Test> tests) {
     setTests(tests);
@@ -29,12 +30,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     return tests.size();
   }
 
+  /** Called upon the binding of every element of the list, with the index given as i. */
   @Override
   public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    // Set the UI elements with the test's details
     final Test test = tests.get(i);
     viewHolder.name.setText(test.getName());
     viewHolder.result.setText(test.getResult());
     viewHolder.date.setText(test.getDate());
+    // Set onClickListener to launch the associated class
     viewHolder.view.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -44,6 +48,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     });
   }
 
+  /** Pass the XML layout that represents each object in the list */
   @NonNull
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -52,10 +57,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     return new ViewHolder(v);
   }
 
+  /** Sets the object list */
   public void setTests(final List<Test> tests) {
     this.tests = tests;
   }
 
+  /** A ViewHolder representing the View that holds each object of the list */
   public static class ViewHolder extends RecyclerView.ViewHolder {
 
     final TextView name, result, date;
@@ -63,6 +70,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
+
+      // Set fields to UI components to manipulate them elsewhere
       view = itemView;
       name = itemView.findViewById(R.id.name);
       result = itemView.findViewById(R.id.result);

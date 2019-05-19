@@ -5,11 +5,12 @@ import com.omothm.healthylife.R;
 import com.omothm.healthylife.db.SQLiteDate;
 import org.jetbrains.annotations.NotNull;
 
+/** A model of the blood pressure entry in the database. */
 public class BloodPressure extends Model {
 
-  private int bottom;
-  private SQLiteDate date;
-  private int top;
+  private int bottom; // bottom number
+  private SQLiteDate date; // date of reading
+  private int top; // top number
 
   public BloodPressure(Context context, final SQLiteDate date, final int top, final int bottom) {
     super(context);

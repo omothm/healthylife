@@ -10,12 +10,13 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import com.omothm.healthylife.R;
 
+/** An extension of LinearLayout that adds a top border to the layout. */
 public class LinearLayoutTopBorder extends LinearLayout {
 
   final Paint paint = new Paint();
 
   {
-    setWillNotDraw(false);
+    setWillNotDraw(false); // must be set for manual drawing
     paint.setStyle(Style.STROKE);
   }
 
@@ -39,13 +40,19 @@ public class LinearLayoutTopBorder extends LinearLayout {
     canvas.drawLine(0, 1, getWidth(), 1, paint);
   }
 
+  /** Retrieves XML attributes for parsing. */
   private void setAttrs(final Context context, final AttributeSet attrs) {
+    // Get a typed array
     final TypedArray arr = context.obtainStyledAttributes(attrs, R.styleable.LinearLayoutTopBorder);
+    // Get color
     final int color = arr.getColor(R.styleable.LinearLayoutTopBorder_border_color,
         Color.argb(255, 192, 192, 192));
+    // Get width
     final float width = arr.getDimension(R.styleable.LinearLayoutTopBorder_border_width, 1f);
+    // Set the paint object
     paint.setColor(color);
     paint.setStrokeWidth(width);
+    // Recycle the typed array
     arr.recycle();
   }
 }

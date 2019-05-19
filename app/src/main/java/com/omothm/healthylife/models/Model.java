@@ -3,6 +3,7 @@ package com.omothm.healthylife.models;
 import android.content.Context;
 import com.omothm.healthylife.db.SQLiteDate;
 
+/** Abtract data model containing an ID and a context.*/
 public abstract class Model {
 
   protected final Context context;

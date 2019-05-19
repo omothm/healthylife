@@ -2,6 +2,10 @@ package com.omothm.healthylife.db;
 
 import android.provider.BaseColumns;
 
+/**
+ * A class containing all database contracts of tables for referencing. BaseColumns contains _ID
+ * and _COUNT which are used by Android.
+ */
 final class Contract {
 
   // Disallow instance creation

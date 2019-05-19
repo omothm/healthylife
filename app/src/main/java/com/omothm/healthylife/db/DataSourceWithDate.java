@@ -8,11 +8,14 @@ import android.util.Log;
 import com.omothm.healthylife.models.Model;
 import java.util.List;
 
+/** Manages inserting, updating, and deleting records from a database table. */
 public abstract class DataSourceWithDate<T extends Model> {
 
   private static final String TAG = DataSourceWithDate.class.getSimpleName();
+
   protected final Context context;
   protected final SQLiteDatabase database;
+  /** Descendents of this class are assumed to have a date column */
   protected final String dateColumn;
   protected final String idColumn;
   protected final String tableName;
@@ -27,6 +30,7 @@ public abstract class DataSourceWithDate<T extends Model> {
     this.idColumn = idColumn;
   }
 
+  /** Lets the user create a return a ContentValues object for element insertion and updating. */
   public abstract ContentValues buildValues(@NonNull final T t);
 
   /**
@@ -44,6 +48,7 @@ public abstract class DataSourceWithDate<T extends Model> {
     delete(null);
   }
 
+  /** Lets the user create a selection a ContentValues object for element insertion and updating. */
   @NonNull
   public abstract List<T> get(String selection);
 
@@ -51,6 +56,7 @@ public abstract class DataSourceWithDate<T extends Model> {
     return get(null);
   }
 
+  /** Gets the latest entry (according to date). */
   public List<T> getLatest() {
     final String sql = dateColumn + " = (SELECT MAX(" + dateColumn + ") FROM " + tableName + ")";
     return get(sql);

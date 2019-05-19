@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
+/** Implementation of the abstract data source class. */
 public class BloodPressureSource extends DataSourceWithDate<BloodPressure> {
 
   public BloodPressureSource(Context context, SQLiteDatabase database) {
@@ -20,6 +21,7 @@ public class BloodPressureSource extends DataSourceWithDate<BloodPressure> {
 
   @Override
   public ContentValues buildValues(@NonNull BloodPressure bp) {
+    // For a given bp, a ContentValues object should look like this:
     final ContentValues values = new ContentValues();
     values.put(BloodPressureEntry.COLUMN_DATE, bp.getDate().getMillis());
     values.put(BloodPressureEntry.COLUMN_TOP, bp.getTop());
@@ -31,8 +33,10 @@ public class BloodPressureSource extends DataSourceWithDate<BloodPressure> {
   @Override
   public List<BloodPressure> get(String selection) {
     final List<BloodPressure> bps = new ArrayList<>();
+    // Run the query
     final Cursor cursor = database.query(tableName, null, selection, null, null, null, null);
     try {
+      // If successful, read all rows into the list
       while (cursor.moveToNext()) {
         final long dateMillis = cursor
                                     .getLong(cursor.getColumnIndex(BloodPressureEntry.COLUMN_DATE));

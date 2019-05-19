@@ -28,19 +28,23 @@ import java.util.List;
 
 public class BloodPressureActivity extends AppCompatActivity {
 
-  private int bottom;
-  private BloodPressureSource bpSource;
-  private Button buttonAddEntry;
-  private LineChart chart;
-  private DbHelper dbHelper;
-  private TextView textAnalysis;
-  private TextView textBottom;
-  private TextView textTop;
-  private int top;
+  private int bottom; // input bottom pressure value
+  private BloodPressureSource bpSource; // data source
+  private Button buttonAddEntry; // UI add button
+  private LineChart chart; // UI chart
+  private DbHelper dbHelper; // database helper
+  private TextView textAnalysis; // UI analysis text
+  private TextView textBottom; // UI bottom pressure
+  private TextView textTop; // UI top pressure
+  private int top; // input top pressure value
 
+  // load data into chart
   private void loadData() {
+    // retrieve all data
     final List<BloodPressure> bps = bpSource.getAll();
+    // convert them into LineData
     LineData data = setupData(bps);
+    // Setup chart configuration and set x-axis values to be dates
     ChartHelper.setupChart(chart, data, new ValueFormatter() {
       @Override
       public String getFormattedValue(float value) {
@@ -65,10 +69,11 @@ public class BloodPressureActivity extends AppCompatActivity {
       ab.setDisplayHomeAsUpEnabled(true);
     }
 
+    // Initialize database helper
     dbHelper = new DbHelper(this);
 
+    // Get UI components
     chart = findViewById(R.id.chart);
-
     textTop = findViewById(R.id.top);
     textBottom = findViewById(R.id.bottom);
     textAnalysis = findViewById(R.id.analysis);
@@ -76,10 +81,12 @@ public class BloodPressureActivity extends AppCompatActivity {
 
     buttonAddEntry.setEnabled(false);
 
+    // Handler of text change
     final TextWatcher watcher = new TextWatcher() {
       @Override
       public void afterTextChanged(Editable s) {
         buttonAddEntry.setEnabled(false);
+        // Try to make sense of input. If successful, set output and analysis.
         try {
           top = Integer.parseInt(textTop.getText().toString());
           bottom = Integer.parseInt(textBottom.getText().toString());
@@ -104,13 +111,16 @@ public class BloodPressureActivity extends AppCompatActivity {
       public void onTextChanged(CharSequence s, int start, int before, int count) { }
     };
 
+    // Register text listeners
     textTop.addTextChangedListener(watcher);
     textBottom.addTextChangedListener(watcher);
 
+    // Register button listener
     buttonAddEntry.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
 
+        // Add new entry
         final SQLiteDate today = new SQLiteDate();
         final BloodPressure newBp = new BloodPressure(BloodPressureActivity.this, today, top,
             bottom);
@@ -167,6 +177,7 @@ public class BloodPressureActivity extends AppCompatActivity {
 
   private LineData setupData(final List<BloodPressure> bps) {
 
+    // Two sets of data for top and bottom values
     ArrayList<Entry> values1 = new ArrayList<>();
     ArrayList<Entry> values2 = new ArrayList<>();
 

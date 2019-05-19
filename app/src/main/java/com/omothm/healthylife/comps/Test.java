@@ -2,11 +2,16 @@ package com.omothm.healthylife.comps;
 
 import android.app.Activity;
 
+/** Test resembles a single test that the app monitors for the user. */
 public class Test {
 
+  /** The associated activity to open upon clicking on a test's entry. */
   private final Activity activity;
+  /** The name of the test. */
   private final String name;
+  /** The last test's date. */
   private String date;
+  /** The last test's result. */
   private String result;
 
   public Test(final String name, final Activity activity) {

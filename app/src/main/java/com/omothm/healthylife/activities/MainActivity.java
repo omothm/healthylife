@@ -32,16 +32,21 @@ public class MainActivity extends AppCompatActivity {
 
   private static final String TAG = MainActivity.class.getSimpleName();
 
+  /** A list of all tests monitored by the app */
   private final List<Test> tests = new ArrayList<>();
+  /** Adapter for the RecyclerView where a list of tests is shown */
   private MainAdapter adapter;
+  // Data sources
   private BmiSource bmiSource;
   private BloodPressureSource bpSource;
   private BloodSugarSource bsSource;
-  private DbHelper dbHelper;
   private EerSource eerSource;
   private HeartRateSource hrSource;
   private WeightSource weightSource;
+  /** Database helper class */
+  private DbHelper dbHelper;
 
+  /** Adds mockup data in the first launch of the app only. */
   private void addMockups() {
     final int nBmi = 5, nEer = 6, nBp = 2, nBs = 0, nHr = 11, nW = 16;
     // Add only if not already added
@@ -80,9 +85,12 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  /** Adds a monitored test to the list. */
   private <T extends Model> void addTest(final String name, final Activity activity,
       final List<T> latest) {
+    // Initialize the object's name and associated activity
     final Test test = new Test(name, activity);
+    // Set latest results if available
     if (latest != null && latest.size() > 0) {
       final T t = latest.get(0);
       test.setResult(t.getStringValue());
@@ -99,15 +107,18 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    // Add the app's logo to the action bar
     final ActionBar ab = getSupportActionBar();
     if (ab != null) {
       ab.setDisplayShowHomeEnabled(true);
       ab.setIcon(R.drawable.ic_launcher_foreground);
     }
 
+    // Initialize the RecyclerView adapter
     adapter = new MainAdapter(this, tests);
     setupRecyclerView();
 
+    // Initialize the database helper
     dbHelper = new DbHelper(this);
   }
 
@@ -125,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
     // Open database
     SQLiteDatabase database = dbHelper.open();
 
+    // Initialize data sources
     bmiSource = new BmiSource(this, database);
     eerSource = new EerSource(this, database);
     bpSource = new BloodPressureSource(this, database);
@@ -132,8 +144,10 @@ public class MainActivity extends AppCompatActivity {
     hrSource = new HeartRateSource(this, database);
     weightSource = new WeightSource(this, database);
 
+    // Add mockups (in the first launch only)
     addMockups();
 
+    // Repopulates the tests list
     tests.clear();
     addTest(getString(R.string.test_name_bmi), new BmiActivity(), bmiSource.getLatest());
     addTest(getString(R.string.test_name_eer), new EerActivity(), eerSource.getLatest());
@@ -145,16 +159,19 @@ public class MainActivity extends AppCompatActivity {
         hrSource.getLatest());
     addTest(getString(R.string.test_name_weight), new WeightActivity(), weightSource.getLatest());
 
+    // Show the list in the recylcer view
     setupRecyclerView();
   }
 
   private void setupRecyclerView() {
     final RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
+    // Attach a layout manager
     final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
     recyclerView.setLayoutManager(layoutManager);
 
+    // Set the adapter
     recyclerView.setAdapter(adapter);
   }
 }

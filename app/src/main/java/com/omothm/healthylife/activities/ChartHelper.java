@@ -1,7 +1,6 @@
 package com.omothm.healthylife.activities;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;
 import com.github.mikephil.charting.components.YAxis;
@@ -33,11 +32,7 @@ public class ChartHelper {
     // add data
     chart.setData(data);
 
-    chart.getAxisLeft().setEnabled(false);
-    chart.getAxisLeft().setSpaceTop(40);
-    chart.getAxisLeft().setSpaceBottom(40);
-    chart.getAxisRight().setEnabled(false);
-
+    // Axis options
     XAxis xAxis = chart.getXAxis();
     xAxis.setPosition(XAxisPosition.BOTTOM_INSIDE);
     xAxis.setEnabled(true);
@@ -52,7 +47,7 @@ public class ChartHelper {
     yAxis.setDrawGridLines(true);
     yAxis.setDrawLabels(true);
 
-    // animate calls invalidate()...
+    // animate calls invalidate()
     chart.animateX(500);
   }
 }
