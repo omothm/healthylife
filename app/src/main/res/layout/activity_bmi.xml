@@ -1,13 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical">
-
-  <TextView
-    android:id="@+id/textView"
-    android:layout_width="wrap_content"
+  android:layout_height="match_parent">
+  <LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="TextView"/>
-</LinearLayout>
+    android:orientation="vertical">
+
+    <com.github.mikephil.charting.charts.LineChart
+      android:focusableInTouchMode="true"
+      android:id="@+id/chart"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/banner_height"/>
+
+    <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <TextView
+        android:id="@+id/textView"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:text="@string/add_new_entry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+      <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/add_entry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <TableLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      >
+      <TableRow android:padding="8dp">
+        <TextView
+          android:layout_width="match_parent"
+          android:padding="8dp"
+          android:gravity="end"
+          android:text="@string/weight"
+          android:textAlignment="textEnd"/>
+        <EditText
+          android:id="@+id/weight"
+          android:gravity="center"
+          android:hint="@string/weight_hint"
+          android:inputType="numberDecimal"
+          tools:ignore="Autofill"/>
+        <TextView
+          android:padding="8dp"
+          android:text="@string/kilogram_abbrev"/>
+      </TableRow>
+      <TableRow android:padding="8dp">
+        <TextView
+          android:layout_width="match_parent"
+          android:padding="8dp"
+          android:gravity="end"
+          android:text="@string/height"
+          android:textAlignment="textEnd"/>
+        <EditText
+          android:id="@+id/height"
+          android:gravity="center"
+          android:hint="@string/height_hint"
+          android:inputType="numberDecimal"
+          tools:ignore="Autofill"/>
+        <TextView
+          android:padding="8dp"
+          android:text="@string/meter_abbrev"/>
+      </TableRow>
+      <TableRow android:padding="8dp">
+        <TextView
+          android:layout_width="match_parent"
+          android:padding="8dp"
+          android:gravity="end"
+          android:text="@string/test_name_bmi"
+          android:textAlignment="textEnd"/>
+        <TextView
+          android:id="@+id/bmi"
+          android:padding="8dp"
+          android:gravity="center"
+          tools:text="-"/>
+      </TableRow>
+    </TableLayout>
+    <TextView
+      android:id="@+id/analysis"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="8dp"
+      android:gravity="center"
+      tools:text="Analysis"/>
+  </LinearLayout>
+</ScrollView>

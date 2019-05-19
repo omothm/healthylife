@@ -1,11 +1,19 @@
 <resources>
   <string name="app_name">Healthy Life</string>
-  <string name="TEST_NAME_BMI">BMI</string>
-  <string name="TEST_NAME_EER">EER</string>
-  <string name="NOT_TESTED">Not tested</string>
-  <string name="NO_DATE">-</string>
-  <string name="TEST_NAME_BLOOD_PRESSURE">Blood pressure</string>
-  <string name="TEST_NAME_BLOOD_SUGAR">Blood sugar</string>
-  <string name="TEST_NAME_HEART_RATE">Heart rate</string>
-  <string name="TEST_NAME_WEIGHT">Weight</string>
+  <string name="test_name_bmi">BMI</string>
+  <string name="test_name_eer">EER</string>
+  <string name="not_tested">Not tested</string>
+  <string name="no_date">-</string>
+  <string name="test_name_blood_pressure">Blood pressure</string>
+  <string name="test_name_blood_sugar">Blood sugar</string>
+  <string name="test_name_heart_rate">Heart rate</string>
+  <string name="test_name_weight">Weight</string>
+  <string name="add_new_entry">Add new entry</string>
+  <string name="weight">Weight</string>
+  <string name="weight_hint">Your weight</string>
+  <string name="height">Height</string>
+  <string name="height_hint">Your height</string>
+  <string name="kilogram_abbrev">kg</string>
+  <string name="meter_abbrev">m</string>
+  <string name="add_entry">Add Entry</string>
 </resources>
