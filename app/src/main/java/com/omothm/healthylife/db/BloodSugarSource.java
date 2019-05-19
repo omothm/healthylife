@@ -27,23 +27,23 @@ public class BloodSugarSource extends DataSourceWithDate<BloodSugar> {
   @NotNull
   @Override
   public List<BloodSugar> get(String selection) {
-    final List<BloodSugar> eers = new ArrayList<>();
+    final List<BloodSugar> bss = new ArrayList<>();
     final Cursor cursor = database.query(tableName, null, selection, null, null, null, null);
     try {
       while (cursor.moveToNext()) {
         final long dateMillis = cursor.getLong(cursor.getColumnIndex(BloodSugarEntry.COLUMN_DATE));
         final SQLiteDate date = new SQLiteDate(dateMillis);
-        final float value = cursor.getFloat(cursor.getColumnIndex(BloodSugarEntry.COLUMN_VALUE));
+        final int value = cursor.getInt(cursor.getColumnIndex(BloodSugarEntry.COLUMN_VALUE));
         final long id = cursor.getLong(cursor.getColumnIndex(BloodSugarEntry._ID));
         final BloodSugar BloodSugar = new BloodSugar(date, value);
         BloodSugar.setId(id);
-        eers.add(BloodSugar);
+        bss.add(BloodSugar);
       }
     } finally {
       if (cursor != null && !cursor.isClosed()) {
         cursor.close();
       }
     }
-    return eers;
+    return bss;
   }
 }

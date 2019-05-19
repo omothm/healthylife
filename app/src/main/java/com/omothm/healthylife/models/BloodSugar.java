@@ -9,9 +9,9 @@ import org.jetbrains.annotations.NotNull;
 public class BloodSugar extends Model {
 
   private SQLiteDate date;
-  private float value;
+  private int value;
 
-  public BloodSugar(final SQLiteDate date, final float value) {
+  public BloodSugar(final SQLiteDate date, final int value) {
     this.date = date;
     this.value = value;
   }
@@ -34,14 +34,14 @@ public class BloodSugar extends Model {
 
   @Override
   public String getStringValue() {
-    return String.format(Locale.getDefault(), "%.1f", value);
+    return String.valueOf(value);
   }
 
   public float getValue() {
     return value;
   }
 
-  public void setValue(float value) {
+  public void setValue(int value) {
     this.value = value;
   }
 

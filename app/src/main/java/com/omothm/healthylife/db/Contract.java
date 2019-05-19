@@ -30,7 +30,7 @@ final class Contract {
 
     public static final String CREATE_TABLE = ContractHelper.createTable(TABLE_NAME,
         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT",
-        COLUMN_DATE + " INTEGER NOT NULL", COLUMN_VALUE + " REAL NOT NULL",
+        COLUMN_DATE + " INTEGER NOT NULL", COLUMN_VALUE + " INTEGER NOT NULL",
         "UNIQUE ( " + _ID + ", " + COLUMN_DATE + " ) ON CONFLICT REPLACE");
   }
 
