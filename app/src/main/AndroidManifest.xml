@@ -20,6 +20,7 @@
     </activity>
     <activity android:name=".activities.EerActivity"/>
     <activity android:name=".activities.BloodPressureActivity"/>
+    <activity android:name=".activities.BloodSugarActivity"/>
   </application>
 
 </manifest>

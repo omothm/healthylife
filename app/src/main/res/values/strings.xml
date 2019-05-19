@@ -31,6 +31,9 @@
   <string name="top_hint">Top number</string>
   <string name="bottom">Bottom</string>
   <string name="bottom_hint">Bottom number</string>
+  <string name="blood_sugar">Blood sugar</string>
+  <string name="blood_sugar_hint">After eating by 2 hrs</string>
+  <string name="mgdl_abbrev">mg/dL</string>
   <string-array name="gender">
     <item>Male</item>
     <item>Female</item>

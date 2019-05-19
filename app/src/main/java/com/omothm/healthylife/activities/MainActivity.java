@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
     for (int i = 0; i < nBs; i++) {
       bsSource.insert(new BloodSugar(new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
-          3 + (int) (Math.random() * 7)));
+          50 + (int) (Math.random() * 90)));
     }
     for (int i = 0; i < nHr; i++) {
       hrSource.insert(new HeartRate(new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     addTest(getString(R.string.test_name_bmi), bmiActivity, bmiSource.getLatest());
     addTest(getString(R.string.test_name_eer), new EerActivity(), eerSource.getLatest());
     addTest(getString(R.string.test_name_blood_pressure), new BloodPressureActivity(), bpSource.getLatest());
-    addTest(getString(R.string.test_name_blood_sugar), bmiActivity, bsSource.getLatest());
+    addTest(getString(R.string.test_name_blood_sugar), new BloodSugarActivity(), bsSource.getLatest());
     addTest(getString(R.string.test_name_heart_rate), bmiActivity, hrSource.getLatest());
     addTest(getString(R.string.test_name_weight), bmiActivity, weightSource.getLatest());
 
