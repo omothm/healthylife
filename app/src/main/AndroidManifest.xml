@@ -21,6 +21,7 @@
     <activity android:name=".activities.EerActivity"/>
     <activity android:name=".activities.BloodPressureActivity"/>
     <activity android:name=".activities.BloodSugarActivity"/>
+    <activity android:name=".activities.HeartRateActivity"/>
   </application>
 
 </manifest>

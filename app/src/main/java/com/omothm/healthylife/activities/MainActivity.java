@@ -56,23 +56,23 @@ public class MainActivity extends AppCompatActivity {
           15 + (float) (Math.random() * 20f)));
     }
     for (int i = 0; i < nEer; i++) {
-      eerSource.insert(new Eer(new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
+      eerSource.insert(new Eer(new SQLiteDate(today.getMillis() - 86400000L * (nEer - i)),
           1500f + (float) (Math.random() * 1500f)));
     }
     for (int i = 0; i < nBp; i++) {
-      bpSource.insert(new BloodPressure(new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
+      bpSource.insert(new BloodPressure(new SQLiteDate(today.getMillis() - 86400000L * (nBp - i)),
           70 + (int) (Math.random() * 120), 40 + (int) (Math.random() * 60)));
     }
     for (int i = 0; i < nBs; i++) {
-      bsSource.insert(new BloodSugar(new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
+      bsSource.insert(new BloodSugar(new SQLiteDate(today.getMillis() - 86400000L * (nBs - i)),
           50 + (int) (Math.random() * 90)));
     }
     for (int i = 0; i < nHr; i++) {
-      hrSource.insert(new HeartRate(new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
+      hrSource.insert(new HeartRate(new SQLiteDate(today.getMillis() - 86400000L * (nHr - i)),
           40 + (int) (Math.random() * 110)));
     }
     for (int i = 0; i < nW; i++) {
-      weightSource.insert(new Weight(new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
+      weightSource.insert(new Weight(new SQLiteDate(today.getMillis() - 86400000L * (nW - i)),
           55f + (float) (Math.random() * 10f)));
     }
   }
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     addTest(getString(R.string.test_name_eer), new EerActivity(), eerSource.getLatest());
     addTest(getString(R.string.test_name_blood_pressure), new BloodPressureActivity(), bpSource.getLatest());
     addTest(getString(R.string.test_name_blood_sugar), new BloodSugarActivity(), bsSource.getLatest());
-    addTest(getString(R.string.test_name_heart_rate), bmiActivity, hrSource.getLatest());
+    addTest(getString(R.string.test_name_heart_rate), new HeartRateActivity(), hrSource.getLatest());
     addTest(getString(R.string.test_name_weight), bmiActivity, weightSource.getLatest());
 
     setupRecyclerView();
