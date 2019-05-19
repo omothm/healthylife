@@ -1,4 +1,11 @@
 <resources>
   <string name="app_name">Healthy Life</string>
   <string name="TEST_NAME_BMI">BMI</string>
+  <string name="TEST_NAME_EER">EER</string>
+  <string name="NOT_TESTED">Not tested</string>
+  <string name="NO_DATE">-</string>
+  <string name="TEST_NAME_BLOOD_PRESSURE">Blood pressure</string>
+  <string name="TEST_NAME_BLOOD_SUGAR">Blood sugar</string>
+  <string name="TEST_NAME_HEART_RATE">Heart rate</string>
+  <string name="TEST_NAME_WEIGHT">Weight</string>
 </resources>
