@@ -32,7 +32,6 @@ public class WeightActivity extends AppCompatActivity {
   private LineChart chart;
   private DbHelper dbHelper;
   private TextView textAnalysis;
-  private TextView textWeight;
   private float weight;
   private WeightSource weightSource;
 
@@ -67,7 +66,7 @@ public class WeightActivity extends AppCompatActivity {
 
     chart = findViewById(R.id.chart);
 
-    textWeight = findViewById(R.id.weight);
+    final TextView textWeight = findViewById(R.id.weight);
     textAnalysis = findViewById(R.id.analysis);
     buttonAddEntry = findViewById(R.id.add_entry);
 
@@ -76,15 +75,19 @@ public class WeightActivity extends AppCompatActivity {
     textWeight.addTextChangedListener(new TextWatcher() {
       @Override
       public void afterTextChanged(Editable s) {
+        buttonAddEntry.setEnabled(false);
         try {
-          weight = Float.parseFloat(textWeight.getText().toString());
+          weight = Float.parseFloat(s.toString());
+          if (weight < 10f || weight > 200f) {
+            throw new IllegalArgumentException();
+          }
           final String analysis = Weight.getAnalysis(WeightActivity.this, weight);
           textAnalysis.setText(analysis);
           buttonAddEntry.setEnabled(true);
         } catch (NumberFormatException ignore) {
-          textWeight.setText(null);
           textAnalysis.setText(null);
-          buttonAddEntry.setEnabled(false);
+        } catch (IllegalArgumentException e) {
+          textAnalysis.setText(R.string.invalid);
         }
       }
 

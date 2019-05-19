@@ -34,7 +34,6 @@ public class BloodSugarActivity extends AppCompatActivity {
   private LineChart chart;
   private DbHelper dbHelper;
   private TextView textAnalysis;
-  private TextView textBs;
 
   private void loadData() {
     final List<BloodSugar> bss = bsSource.getAll();
@@ -67,7 +66,7 @@ public class BloodSugarActivity extends AppCompatActivity {
 
     chart = findViewById(R.id.chart);
 
-    textBs = findViewById(R.id.bs);
+    final TextView textBs = findViewById(R.id.bs);
     textAnalysis = findViewById(R.id.analysis);
     buttonAddEntry = findViewById(R.id.add_entry);
 
@@ -76,14 +75,19 @@ public class BloodSugarActivity extends AppCompatActivity {
     textBs.addTextChangedListener(new TextWatcher() {
       @Override
       public void afterTextChanged(Editable s) {
+        buttonAddEntry.setEnabled(false);
         try {
-          bs = Integer.parseInt(textBs.getText().toString());
+          bs = Integer.parseInt(s.toString());
+          if (bs < 20 || bs > 180) {
+            throw new IllegalArgumentException();
+          }
           final String analysis = BloodSugar.getAnalysis(BloodSugarActivity.this, bs);
           textAnalysis.setText(analysis);
           buttonAddEntry.setEnabled(true);
         } catch (NumberFormatException ignore) {
           textAnalysis.setText(null);
-          buttonAddEntry.setEnabled(false);
+        } catch (IllegalArgumentException e) {
+          textAnalysis.setText(R.string.invalid);
         }
       }
 

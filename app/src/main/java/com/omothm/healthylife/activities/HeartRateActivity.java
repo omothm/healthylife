@@ -34,7 +34,6 @@ public class HeartRateActivity extends AppCompatActivity {
   private DbHelper dbHelper;
   private int hr;
   private TextView textAnalysis;
-  private TextView textHr;
 
   private void loadData() {
     final List<HeartRate> hss = bsSource.getAll();
@@ -67,7 +66,7 @@ public class HeartRateActivity extends AppCompatActivity {
 
     chart = findViewById(R.id.chart);
 
-    textHr = findViewById(R.id.hr);
+    final TextView textHr = findViewById(R.id.hr);
     textAnalysis = findViewById(R.id.analysis);
     buttonAddEntry = findViewById(R.id.add_entry);
 
@@ -76,14 +75,19 @@ public class HeartRateActivity extends AppCompatActivity {
     textHr.addTextChangedListener(new TextWatcher() {
       @Override
       public void afterTextChanged(Editable s) {
+        buttonAddEntry.setEnabled(false);
         try {
-          hr = Integer.parseInt(textHr.getText().toString());
+          hr = Integer.parseInt(s.toString());
+          if (hr < 20 || hr > 160) {
+            throw new IllegalArgumentException();
+          }
           final String analysis = HeartRate.getAnalysis(HeartRateActivity.this, hr);
           textAnalysis.setText(analysis);
           buttonAddEntry.setEnabled(true);
         } catch (NumberFormatException ignore) {
           textAnalysis.setText(null);
-          buttonAddEntry.setEnabled(false);
+        } catch (IllegalArgumentException e) {
+          textAnalysis.setText(R.string.invalid);
         }
       }
 

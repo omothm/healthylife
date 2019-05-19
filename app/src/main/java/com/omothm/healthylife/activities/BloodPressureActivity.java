@@ -79,16 +79,21 @@ public class BloodPressureActivity extends AppCompatActivity {
     final TextWatcher watcher = new TextWatcher() {
       @Override
       public void afterTextChanged(Editable s) {
+        buttonAddEntry.setEnabled(false);
         try {
           top = Integer.parseInt(textTop.getText().toString());
           bottom = Integer.parseInt(textBottom.getText().toString());
+          if (top < 20 || top > 250 || bottom < 10 || bottom > 140) {
+            throw new IllegalArgumentException();
+          }
           final String analysis = BloodPressure.getAnalysis(BloodPressureActivity.this, top,
               bottom);
           textAnalysis.setText(analysis);
           buttonAddEntry.setEnabled(true);
         } catch (NumberFormatException ignore) {
           textAnalysis.setText(null);
-          buttonAddEntry.setEnabled(false);
+        } catch (IllegalArgumentException e) {
+          textAnalysis.setText(R.string.invalid);
         }
       }
 

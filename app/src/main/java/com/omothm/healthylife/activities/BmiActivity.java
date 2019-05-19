@@ -81,9 +81,13 @@ public class BmiActivity extends AppCompatActivity {
     final TextWatcher watcher = new TextWatcher() {
       @Override
       public void afterTextChanged(Editable s) {
+        buttonAddEntry.setEnabled(false);
         try {
           final float weight = Float.parseFloat(textWeight.getText().toString());
           final float height = Float.parseFloat(textHeight.getText().toString());
+          if (weight < 10f || weight > 200f || height < 0.5f || height > 2.5f) {
+            throw new IllegalArgumentException();
+          }
           bmi = Bmi.calculate(weight, height);
           textBmi.setText(String.format(Locale.getDefault(), "%.1f", bmi));
           final String analysis = Bmi.getAnalysis(BmiActivity.this, bmi);
@@ -92,7 +96,8 @@ public class BmiActivity extends AppCompatActivity {
         } catch (NumberFormatException ignore) {
           textBmi.setText(null);
           textAnalysis.setText(null);
-          buttonAddEntry.setEnabled(false);
+        } catch (IllegalArgumentException e) {
+          textAnalysis.setText(R.string.invalid);
         }
       }
 

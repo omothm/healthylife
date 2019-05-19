@@ -46,15 +46,17 @@ public class EerActivity extends AppCompatActivity {
   private TextView textWeight;
 
   private void handleChange() {
+    buttonAddEntry.setEnabled(false);
     try {
       // male is true
       final boolean gender = spinnerGender.getSelectedItem().toString().equals("Male");
       final int age = Integer.parseInt(textAge.getText().toString());
-      if (age < 19) {
-        throw new NumberFormatException();
-      }
       final float weight = Float.parseFloat(textWeight.getText().toString());
       final float height = Float.parseFloat(textHeight.getText().toString());
+      if (age < 19 || age > 150 || weight < 10f || weight > 200f || height < 0.5f
+              || height > 2.5f) {
+        throw new IllegalArgumentException();
+      }
       final String activityString = spinnerActivity.getSelectedItem().toString();
       final float activity;
       if (activityString.equalsIgnoreCase("sedentary")) {
@@ -74,7 +76,8 @@ public class EerActivity extends AppCompatActivity {
     } catch (NumberFormatException ignore) {
       textEer.setText(null);
       textAnalysis.setText(null);
-      buttonAddEntry.setEnabled(false);
+    } catch (IllegalArgumentException e) {
+      textAnalysis.setText(R.string.invalid);
     }
   }
 
