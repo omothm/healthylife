@@ -8,6 +8,7 @@ import com.omothm.healthylife.db.Contract.BloodSugarEntry;
 import com.omothm.healthylife.models.BloodSugar;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class BloodSugarSource extends DataSourceWithDate<BloodSugar> {
 
@@ -23,6 +24,7 @@ public class BloodSugarSource extends DataSourceWithDate<BloodSugar> {
     return values;
   }
 
+  @NotNull
   @Override
   public List<BloodSugar> get(String selection) {
     final List<BloodSugar> eers = new ArrayList<>();

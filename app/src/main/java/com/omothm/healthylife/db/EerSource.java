@@ -8,6 +8,7 @@ import com.omothm.healthylife.db.Contract.EerEntry;
 import com.omothm.healthylife.models.Eer;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class EerSource extends DataSourceWithDate<Eer> {
 
@@ -23,6 +24,7 @@ public class EerSource extends DataSourceWithDate<Eer> {
     return values;
   }
 
+  @NotNull
   @Override
   public List<Eer> get(String selection) {
     final List<Eer> eers = new ArrayList<>();

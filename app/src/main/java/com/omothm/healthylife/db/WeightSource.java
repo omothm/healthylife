@@ -8,6 +8,7 @@ import com.omothm.healthylife.db.Contract.WeightEntry;
 import com.omothm.healthylife.models.Weight;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class WeightSource extends DataSourceWithDate<Weight> {
 
@@ -23,6 +24,7 @@ public class WeightSource extends DataSourceWithDate<Weight> {
     return values;
   }
 
+  @NotNull
   @Override
   public List<Weight> get(String selection) {
     final List<Weight> eers = new ArrayList<>();

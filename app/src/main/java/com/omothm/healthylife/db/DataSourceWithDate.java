@@ -40,6 +40,7 @@ public abstract class DataSourceWithDate<T extends Model> {
     delete(null);
   }
 
+  @NonNull
   public abstract List<T> get(String selection);
 
   public List<T> getAll() {
@@ -51,13 +52,14 @@ public abstract class DataSourceWithDate<T extends Model> {
     return get(sql);
   }
 
-  public void insert(@NonNull final T t) {
+  public long insert(@NonNull final T t) {
     final ContentValues values = buildValues(t);
     final long rowId = database.insert(tableName, null, values);
     Log.d(TAG, "Entry inserted with row ID: " + rowId);
+    return rowId;
   }
 
-  public void update(@NonNull final T t) {
+  public int update(@NonNull final T t) {
     final ContentValues values = buildValues(t);
 
     final String whereClause = idColumn + " = ?";
@@ -65,5 +67,6 @@ public abstract class DataSourceWithDate<T extends Model> {
 
     final int rows = database.update(tableName, values, whereClause, whereArgs);
     Log.d(TAG, "Number of rows updated: " + rows);
+    return rows;
   }
 }

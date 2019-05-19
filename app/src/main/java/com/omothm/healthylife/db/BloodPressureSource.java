@@ -8,6 +8,7 @@ import com.omothm.healthylife.db.Contract.BloodPressureEntry;
 import com.omothm.healthylife.models.BloodPressure;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class BloodPressureSource extends DataSourceWithDate<BloodPressure> {
 
@@ -25,6 +26,7 @@ public class BloodPressureSource extends DataSourceWithDate<BloodPressure> {
     return values;
   }
 
+  @NotNull
   @Override
   public List<BloodPressure> get(String selection) {
     final List<BloodPressure> bps = new ArrayList<>();

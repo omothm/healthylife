@@ -8,6 +8,7 @@ import com.omothm.healthylife.db.Contract.BmiEntry;
 import com.omothm.healthylife.models.Bmi;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class BmiSource extends DataSourceWithDate<Bmi> {
 
@@ -23,6 +24,7 @@ public class BmiSource extends DataSourceWithDate<Bmi> {
     return values;
   }
 
+  @NotNull
   @Override
   public List<Bmi> get(String selection) {
     final List<Bmi> bmis = new ArrayList<>();

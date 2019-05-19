@@ -8,6 +8,7 @@ import com.omothm.healthylife.db.Contract.HeartRateEntry;
 import com.omothm.healthylife.models.HeartRate;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class HeartRateSource extends DataSourceWithDate<HeartRate> {
 
@@ -23,6 +24,7 @@ public class HeartRateSource extends DataSourceWithDate<HeartRate> {
     return values;
   }
 
+  @NotNull
   @Override
   public List<HeartRate> get(String selection) {
     final List<HeartRate> eers = new ArrayList<>();
