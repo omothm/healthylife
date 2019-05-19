@@ -1,13 +1,21 @@
 package com.omothm.healthylife.comps;
 
+import android.app.Activity;
+
 public class Test {
 
-  final String name;
-  String date;
-  String result;
+  private final Activity activity;
+  private final String name;
+  private String date;
+  private String result;
 
-  public Test(final String name) {
+  public Test(final String name, final Activity activity) {
     this.name = name;
+    this.activity = activity;
+  }
+
+  public Activity getActivity() {
+    return activity;
   }
 
   public String getDate() {
