@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import com.omothm.healthylife.db.Contract.BloodPressureEntry;
 import com.omothm.healthylife.db.Contract.BloodSugarEntry;
 import com.omothm.healthylife.db.Contract.BmiEntry;
@@ -16,6 +17,8 @@ import com.omothm.healthylife.db.Contract.WeightEntry;
  * databases.
  */
 public class DbHelper extends SQLiteOpenHelper {
+
+  private static final String TAG = DbHelper.class.getSimpleName();
 
   private static final String DATABASE_NAME = "healthy_life.db";
   private static final int VERSION_NUMBER = 1;
@@ -34,6 +37,12 @@ public class DbHelper extends SQLiteOpenHelper {
     db.execSQL(WeightEntry.CREATE_TABLE);
   }
 
+  public SQLiteDatabase open() {
+    final SQLiteDatabase db = getWritableDatabase();
+    Log.d(TAG, "Database opened");
+    return db;
+  }
+
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     // For now, we'll just drop the current tables and create new ones
@@ -44,5 +53,11 @@ public class DbHelper extends SQLiteOpenHelper {
     db.execSQL("DROP TABLE IF EXISTS " + HeartRateEntry.TABLE_NAME);
     db.execSQL("DROP TABLE IF EXISTS " + WeightEntry.TABLE_NAME);
     onCreate(db);
+  }
+
+  @Override
+  public synchronized void close() {
+    super.close();
+    Log.d(TAG, "Database closed");
   }
 }
