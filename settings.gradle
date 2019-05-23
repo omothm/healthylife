@@ -1,1 +1,1 @@
-include ':app', ':kiyas'
+include ':app'
