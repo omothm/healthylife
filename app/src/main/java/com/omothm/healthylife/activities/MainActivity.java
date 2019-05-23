@@ -46,42 +46,42 @@ public class MainActivity extends AppCompatActivity {
   /** Database helper class */
   private DbHelper dbHelper;
 
-  /** Adds mockup data in the first launch of the app only. */
-  private void addMockups() {
+  /** Adds sample data in the first launch of the app only. */
+  private void addSamples() {
     final int nBmi = 5, nEer = 6, nBp = 2, nBs = 0, nHr = 11, nW = 16;
     // Add only if not already added
     final List<Bmi> bmis = bmiSource.getAll();
     if (bmis.size() >= nBmi) {
-      // This means either mockups were inserted or there is actual values, so don't add anything
+      // This means either samples were inserted or there is actual values, so don't add anything
       return;
     }
     Log.d(TAG, "Inserting mockup records");
     final SQLiteDate today = new SQLiteDate();
     for (int i = 0; i < nBmi; i++) {
       bmiSource.insert(new Bmi(this, new SQLiteDate(today.getMillis() - 86400000L * (nBmi - i)),
-          15 + (float) (Math.random() * 20f)));
+          20 + (float) (Math.random() * 5f)));
     }
     for (int i = 0; i < nEer; i++) {
       eerSource.insert(new Eer(this, new SQLiteDate(today.getMillis() - 86400000L * (nEer - i)),
-          1500f + (float) (Math.random() * 1500f)));
+          2500f + (float) (Math.random() * 500f)));
     }
     for (int i = 0; i < nBp; i++) {
       bpSource
           .insert(new BloodPressure(this, new SQLiteDate(today.getMillis() - 86400000L * (nBp - i)),
-              70 + (int) (Math.random() * 120), 40 + (int) (Math.random() * 60)));
+              120 + (int) (Math.random() * 70), 70 + (int) (Math.random() * 30)));
     }
     for (int i = 0; i < nBs; i++) {
       bsSource
           .insert(new BloodSugar(this, new SQLiteDate(today.getMillis() - 86400000L * (nBs - i)),
-              50 + (int) (Math.random() * 90)));
+              95 + (int) (Math.random() * 45)));
     }
     for (int i = 0; i < nHr; i++) {
       hrSource.insert(new HeartRate(this, new SQLiteDate(today.getMillis() - 86400000L * (nHr - i)),
-          40 + (int) (Math.random() * 110)));
+          90 + (int) (Math.random() * 60)));
     }
     for (int i = 0; i < nW; i++) {
       weightSource.insert(new Weight(this, new SQLiteDate(today.getMillis() - 86400000L * (nW - i)),
-          55f + (float) (Math.random() * 10f)));
+          65f + (float) (Math.random() * 2f)));
     }
   }
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     weightSource = new WeightSource(this, database);
 
     // Add mockups (in the first launch only)
-    addMockups();
+    addSamples();
 
     // Repopulates the tests list
     tests.clear();
